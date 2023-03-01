@@ -6,7 +6,7 @@ public class Rectangle {
     private int length;
     private int breadth;
 
-    // define the getter and setter methods
+    // define the getter and setter methods for the properties
     public int getLength() {
         return length;
     }
