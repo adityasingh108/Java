@@ -13,9 +13,9 @@ abstract class shape{
 class circle extends shape{
     double radius;
 
-    void circle(double radius){
-        this.radius = radius;
-    }
+    // void circle(double radius){
+    //     this.radius = radius;
+    // }
 
     void area(){
         double  are = Math.PI * radius*radius;
@@ -33,10 +33,10 @@ class rectangle extends shape{
         int length; 
         int breadth;
 
-        void rectangle(int length , int breadth){
-            this.length = length;
-            this.breadth = breadth;
-        }
+        // void rectangle(int length , int breadth){
+        //     this.length = length;
+        //     this.breadth = breadth;
+        // }
 
         void area(){
             System.out.println("area of the rectangle is:" + length *breadth);

@@ -4,13 +4,13 @@ package InnerClass;
 class Outer {
     void display() {
 
-        class LocalInnerClass {
+        class inner {
 
             void innerClassDisplay() {
                 System.out.println("Im inner class display ");
             }
         }
-        LocalInnerClass li = new LocalInnerClass();
+        inner li = new inner();
         li.innerClassDisplay();
     }
 
