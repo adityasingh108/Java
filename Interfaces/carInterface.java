@@ -12,7 +12,7 @@ class phone{
     }
 }
 
-//camaera interface
+//Camera interface
 interface camra{
     public void record();
     public void clickPhoto();
