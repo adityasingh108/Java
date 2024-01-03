@@ -1,10 +1,15 @@
-
+import java.util.*;
 
 public class recursion {
     public static void main(String[] args) {
-       long ans = factorial(20);
+    //    long ans = factorial(10);
 
-        System.out.println(ans);
+       Date d = new Date(System.currentTimeMillis());
+       GregorianCalendar cal = new GregorianCalendar();
+       System.out.println(cal);
+    //    System.out.println(d);
+
+        // System.out.println(s);
     }
 
     public static long factorial(long n ){

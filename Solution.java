@@ -1,29 +1,35 @@
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Solution {
     public static void main(String[] args) {
-        Scanner  sc = new Scanner(System.in);
-        int row = sc.nextInt();
-        int i , j , k = 1;
-        for( i = 1; i<= (2 * row ) -1 ;  i++){
-            for(j = 1 ; j<= (2 *row )-1 ; j++){
-                if(i== j  || i+j == 2 *row){
-                    System.out.println(k);
-                } 
-                else{
-                    System.out.println(" ");
-                }
 
-            }
-            if( i < row){
-                k++;
-            }
-            else{
-                k--;
 
+        
+        Double ans = getDoubleAmount("Aditya");
+        System.out.println(ans);
+
+
+    }
+
+    public static Double getDoubleAmount(String s){
+        // Creating a HashMap
+        Map<String, Double> hashMap = new HashMap<>();
+
+        // Adding key-value pairs to the HashMap
+        hashMap.put("Aditya", 25.00);
+        hashMap.put("Jane", 30.00);
+        hashMap.put("Bob", 22.00);
+        hashMap.put("Alice", 28.00);
+
+
+        for (Map.Entry<String, Double> entry : hashMap.entrySet()){
+            if(entry.getKey().equals(s)){
+                return entry.getValue();
             }
-            System.out.println();
         }
-
+        return 0.00;
     }
 }
