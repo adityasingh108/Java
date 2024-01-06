@@ -7,7 +7,7 @@ public class recursion {
        Date d = new Date(System.currentTimeMillis());
        GregorianCalendar cal = new GregorianCalendar();
        System.out.println(cal);
-    //    System.out.println(d);
+       System.out.println(d);
 
         // System.out.println(s);
     }
