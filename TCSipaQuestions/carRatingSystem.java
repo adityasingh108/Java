@@ -1,88 +1,103 @@
 package TCSipaQuestions;
- import java.util.*;
+
+import java.util.Scanner;
+
 
 public class carRatingSystem {
     public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
-       int testCase = sc.nextInt(); sc.nextLine();
+        Scanner sc = new Scanner(System.in);
+        int testCase = sc.nextInt();
+        sc.nextLine();
 
-       // create  a array of object of the AutonomousCar
-       AutonomousCar[] objofAutonomousCars = new AutonomousCar[testCase];
+        // Create an array of objects of the AutonomousCar
+        AutonomousCar[] autonomousCars = new AutonomousCar[testCase];
 
-       while (testCase -- > 0 ) {
-
-            int carId = sc.nextInt(); sc.nextLine();
+        // Input for AutonomousCar objects
+        for (int i = 0; i < testCase; i++) {
+            int carId = sc.nextInt();
+            sc.nextLine(); // Consume the newline character
             String brand = sc.nextLine();
-            int testConducted = sc.nextInt(); sc.nextLine();
-            int testpassed = sc.nextInt(); sc.nextLine();
-            String enviroment = sc.nextLine();
+            int noOfTestsConducted = sc.nextInt();
+            int noOfTestsPassed = sc.nextInt();
+            sc.nextLine(); // Consume the newline character
+            String environment = sc.nextLine();
 
-            objofAutonomousCars[testCase] = new AutonomousCar(carId, brand, testConducted, testpassed , enviroment);
- 
-       }
-
-       String inputEnviroment = sc.nextLine();
-       String inputBrand = sc.nextLine();
-
-
-       int  ans = findTestPassedByEnv(objofAutonomousCars, inputEnviroment);
-       System.out.println(ans);
-
-
-
-       String outPutans = updateCarGrade(objofAutonomousCars, inputBrand);
-       System.out.println(inputBrand + "::" + outPutans);
-
-
-
-
-
-       sc.close();
-    }
-
-    public static int findTestPassedByEnv(AutonomousCar[] obj , String inputEnviroment){
-            int sum = 0 ; 
-            for(int i =0 ; i<obj.length; i++){
-                if(obj[i].enviroment.equalsIgnoreCase(inputEnviroment)){
-                    sum += obj[i].testpassed;
-                    // return obj[i];
-                }
-            }
-            return sum;
-    }
-
-    public static String updateCarGrade(AutonomousCar[] obj , String inputBrand){
-
-        for(int i = 0 ; i<obj.length; i++){
-            if(obj[i].brand.equalsIgnoreCase(inputBrand)){
-                int rating = (obj[i].testpassed * 100) / obj[i].testConducted;
-                if(rating >= 80 ){
-                    return "A1";
-                }
-            }
-
+            autonomousCars[i] = new AutonomousCar(carId, brand, noOfTestsConducted, noOfTestsPassed, environment);
         }
-        return "B1";
+
+        // Input for environment and brand
+        String inputEnvironment = sc.nextLine();
+        String inputBrand = sc.nextLine();
+
+        // Calling the static methods
+        int totalTestsPassed = findTestPassedByEnv(autonomousCars, inputEnvironment);
+        if (totalTestsPassed > 0) {
+            System.out.println(totalTestsPassed);
+        } else {
+            System.out.println("There are no tests passed in this particular environment");
+        }
+
+        AutonomousCar updatedCar = updateCarGrade(autonomousCars, inputBrand);
+        if (updatedCar != null) {
+            System.out.println(updatedCar.brand + "::" + updatedCar.grade);
+        } else {
+            System.out.println("No Car is available with the specified brand");
+        }
+
+        sc.close();
     }
 
-    
+    // Static method to find the sum of noOfTestsPassed for a given environment
+    public static int findTestPassedByEnv(AutonomousCar[] cars, String environment) {
+        int sum = 0;
+        for (AutonomousCar car : cars) {
+            if (car.environment.equalsIgnoreCase(environment)) {
+                sum += car.noOfTestsPassed;
+            }
+        }
+        return sum;
+    }
 
+    // Static method to update the grade based on the rating calculation
+    public static AutonomousCar updateCarGrade(AutonomousCar[] cars, String brand) {
+        for (AutonomousCar car : cars) {
+            if (car.brand.equalsIgnoreCase(brand)) {
+                int rating = (car.noOfTestsPassed * 100) / car.noOfTestsConducted;
+                car.setGrade((rating >= 80) ? "A1" : "B2");
+                return car;
+            }
+        }
+        return null;
+    }
 }
 
 
 
-class AutonomousCar{
-    public int  carId ;
+class AutonomousCar {
+    public int carId;
     public String brand;
-    public int testConducted;
-    public int testpassed;
-    public String enviroment;
+    public int noOfTestsConducted;
+    public int noOfTestsPassed;
+    public String environment;
+    public String grade;  // Added grade attribute
 
-    AutonomousCar(int carId , String brand , int testConducted , int  testpassed , String enviroment){
+    // Constructor
+    public AutonomousCar(int carId, String brand, int noOfTestsConducted, int noOfTestsPassed, String environment) {
         this.carId = carId;
         this.brand = brand;
-        this.testConducted = testConducted;
-        this.testpassed = testpassed;
-        this.enviroment = enviroment;
+        this.noOfTestsConducted = noOfTestsConducted;
+        this.noOfTestsPassed = noOfTestsPassed;
+        this.environment = environment;
+        this.grade = "";  // Initialize grade as empty
+    }
+
+    // Getter and Setter for grade
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 }
+
