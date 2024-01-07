@@ -36,6 +36,8 @@ class FootwearCompany {
             System.out.println(finalData.footwareName);
             System.out.println(finalData.price);
         }
+
+        sc.close();
     }
 
     public static int getCountByType(Footwear data[], String type) {
